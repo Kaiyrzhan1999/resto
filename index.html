@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESTO - Инновационное решение для вашего бизнеса</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            position: relative;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            max-width: 150px; /* Уменьшаем максимальный размер логотипа */
+            height: auto;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #ff6b6b;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #ff8787;
+        }
+        section {
+            padding: 80px 0;
+        }
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .features {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .feature {
+            flex-basis: calc(50% - 20px);
+            margin-bottom: 40px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #6e8efb;
+        }
+        .feature-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .testimonials {
+            background-color: #e9ecef;
+            text-align: center;
+            padding: 80px 0;
+        }
+        .testimonial-slider {
+            margin-top: 40px;
+        }
+        .testimonial {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin: 0 15px;
+        }
+        .testimonial-text {
+            font-style: italic;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        .testimonial-author {
+            font-weight: bold;
+        }
+        .partners {
+            text-align: center;
+        }
+        .partner-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .partner-logo {
+            max-width: 150px;
+            height: auto;
+        }
+        .contact {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .contact-item i {
+            font-size: 24px;
+        }
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        @media (max-width: 768px) {
+            .feature {
+                flex-basis: 100%;
+            }
+            .contact-info {
+                flex-direction: column;
+            }
+            .logo {
+                top: 10px;
+                left: 10px;
+                max-width: 100px;
+            }
+            header{
+                padding: 60px 0;
+            }
+            h1{
+                font-size: 2rem;
+            }
+            .tagline{
+                font-size: 1rem;
+            }
+            section{
+                padding: 60px 0;
+            }
+            h2{
+                font-size: 2rem;
+            }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            width: 90%; /* Адаптивный размер */
+            max-width: 478px; /* Максимальный размер */
+            position: relative;
+            animation: fadeIn 0.3s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .close {position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #333;
+            text-decoration: none;
+        }
+        .modal-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #6e8efb;
+        }
+        .modal-content label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .modal-content input,
+        .modal-content select {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom:15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        .modal-content button {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+        .modal-content button:hover {
+            background-color: #ff8787;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Логотип RESTO" class="logo">
+        <h1>RESTO</h1>
+        <p class="tagline">Инновационное решение для улучшения обслуживания клиентов и управления отзывами</p>
+        <a href="#" class="cta-button" id="openModalBtn">Попробовать бесплатно</a>
+    </header>
+
+    <section class="features">
+        <div class="container">
+            <h2>Наши возможности</h2>
+            <div class="features">
+                <div class="feature">
+                    <img src="qr.png" alt="QR меню" class="feature-image">
+                    <h3>QR-код меню</h3>
+                    <p>Предоставьте вашим гостям удобный доступ к меню через QR-код. Легко обновляйте блюда и цены в режиме реального времени.</p>
+                </div>
+                <div class="feature">
+                    <img src="otzyv.png" alt="Система отзывов" class="feature-image">
+                    <h3>Мгновенные отзывы</h3>
+                    <p>Получайте мгновенные отзывы от клиентов через простой и интуитивно понятный интерфейс на их смартфонах.</p>
+                </div>
+                <div class="feature">
+                    <img src="analitika.png" alt="Аналитика" class="feature-image">
+                    <h3>Подробная аналитика</h3>
+                    <p>Анализируйте отзывы клиентов, отслеживайте тенденции и принимайте обоснованные решения для улучшения вашего бизнеса.</p>
+                </div>
+                <div class="feature">
+                    <img src="push.png" alt="Уведомления" class="feature-image">
+                    <h3>Мгновенные уведомления</h3>
+                    <p>Получайте мгновенные уведомления о новых отзывах и жалобах клиентов прямо на мобильные устройства вашего персонала.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2>Что говорят наши клиенты</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <p class="testimonial-text">"Благодаря этой системе мы смогли значительно улучшить качество обслуживания и быстро реагировать на отзывы клиентов. Это революция в управлении рестораном!"</p>
+                    <p class="testimonial-author">- Анна, владелец ресторана "У Анны"</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"QR-меню упростило процесс заказа для наших клиентов. Мы заметили увеличение среднего чека и скорости обслуживания."</p>
+                    <p class="testimonial-author">- Михаил, менеджер кафе "Солнечное"</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"Система отзывов помогла нам быстро выявлять и решать проблемы. Наши клиенты ценят, что мы прислушиваемся к их мнению."</p>
+                    <p class="testimonial-author">- Елена, владелец сети кофеен "Аромат"</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"Аналитика, предоставляемая платформой, помогла нам оптимизировать меню и улучшить обслуживание. Наши продажи выросли на 20%!"</p>
+                    <p class="testimonial-author">- Алексей, ресторатор "Вкусный дворик"</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"Мгновенные уведомления о жалобах позволяют нам решать проблемы клиентов на месте. Это значительно повысило уровень удовлетворенности гостей."</p>
+                    <p class="testimonial-author">- Ольга, управляющая рестораном "Морской бриз"</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"Внедрение QR-меню помогло нам сократить расходы на печать и обновление меню. Это экологично и экономично!"</p>
+                    <p class="testimonial-author">- Дмитрий, владелец бара "Зеленый"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="partners">
+        <div class="container">
+            <h2>Наши партнеры</h2>
+            <div class="partner-logos">
+                <img src="https://logo.clearbit.com/mcdonalds.com" alt="McDonald's" class="partner-logo">
+                <img src="https://logo.clearbit.com/starbucks.com" alt="Starbucks" class="partner-logo">
+                <img src="https://logo.clearbit.com/subway.com" alt="Subway" class="partner-logo">
+                <img src="https://logo.clearbit.com/dominos.com" alt="Domino's Pizza" class="partner-logo">
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <h2>Свяжитесь с нами</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+7 777 844 0128</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <a href="https://wa.me/77778440128" target="_blank">WhatsApp</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-instagram"></i>
+                    <a href="https://www.instagram.com/your_instagram" target="_blank">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 RESTO. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Заполните форму</h2>
+            <form id="modalForm">
+                <label for="name">Имя:</label><br>
+                <input type="text" id="name" name="name"><br>
+                <label for="phone">Номер телефона:</label><br>
+                <input type="tel" id="phone" name="phone"><br>
+                <label for="industry">Отрасль:</label><br>
+                <select id="industry" name="industry">
+                    <option value="restaurant">Ресторан</option>
+                    <option value="cafe">Кафе</option>
+                    <option value="hotel">Отель</option>
+                    <option value="shop">Магазин</option>
+                    <option value="office">Офис</option>
+                    <option value="bank">Банк</option>
+                </select><br>
+                <label for="brand">Название бренда:</label><br>
+                <input type="text" id="brand" name="brand"><br><br>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.testimonial-slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 3,
+                slideToScroll: 1,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 2,
+                            slideToScroll: 1,
+                            infinite: true,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 1,
+                            slideToScroll: 1
+                        }
+                    }
+                ]
+            });
+
+            var modal = document.getElementById("myModal");
+            var btn = document.getElementById("openModalBtn");
+            var span = document.getElementsByClassName("close")[0];
+
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            $("#modalForm").submit(function(event) {
+                event.preventDefault();
+                modal.style.display = "none";
+            });
+        });
+    </script>
+</body>
+</html>
